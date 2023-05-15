@@ -5,8 +5,32 @@
 #include "customer.h"
 #include "purchase.h"
 using namespace std;
+//consturctor
+Customer::Customer(int id, string fn, string ln, string add, string cit, string stat, string zip, string phone) {
+    this->id = id;
+    firstName = fn;
+    lastName = ln;
+    address = add;
+    city = cit;
+    state = stat;
+    zipcode = zip;
+    phoneNumber = phone;
+}
+//default constructor
+Customer::Customer() {
+    this->id = 0;
+    firstName = "";
+    lastName = "";
+    address = "";
+    city = "";
+    state = "";
+    zipcode = "";
+    phoneNumber = "";
+}
+Purchase purchase;
 
-void showCustomers(vector<Customer>& customers) {
+//outputs all customors from the vector
+void Customer::showCustomers(vector<Customer>& customers) {
         cout << "All Customers " << endl;
 
         for (auto customer : customers) {
@@ -24,19 +48,45 @@ void showCustomers(vector<Customer>& customers) {
         cout << "**************************************" << endl;
     }
 
-void sortCustomers(vector<Customer>& customers) {
+//sorting by ascending order, descending order,
+bool dec (Customer a, Customer b) { return a.getID() < b.getID(); }
+bool inc (Customer a, Customer b) { return a.getID() > b.getID(); }
+
+//menu and user prompting for sorting options
+void Customer::sortCustomers(vector<Customer>& customers) {
     int sortOption;
     cout << "Sort customers by ID in:\n1. Ascending order\n2. Descending order" << endl;
     cin >> sortOption;
-    
+    cout << sortOption;
     if (sortOption == 1) {
-        sort(customers.begin(), customers.end(), [](Customer a, Customer b) { return a.getID() < b.getID(); });
-    } else if (sortOption == 2) {
-        sort(customers.begin(), customers.end(), [](Customer a, Customer b) { return a.getID() > b.getID(); });
-    } else {
+         cout << sortOption;
+        for(int i = 1; i < customers.size(); i++) {
+            for(int j = i-1; j >=0; j++) {
+                if(customers[j].getID() < customers[j+1].getID()) {
+                    Customer temp = customers[j];
+                    customers[j] = customers[j+1];
+                    customers[j+1] = temp;
+                }
+            }
+        }
+    } 
+    
+    else if (sortOption == 2) {
+         cout << sortOption;
+    for(int i = 0; i < customers.size(); i++) {
+        for(int j = 0; j < customers.size()-1; j++) {
+            if(customers[j].getID() > customers[j+1].getID()) {
+                Customer temp = customers[j];
+                customers[j] = customers[j+1];
+                customers[j+1] = temp;
+            }
+        }
+    }
+    } 
+    else {
         cout << "Invalid sort option. Showing customers in original order." << endl;
     }
-    
+    //outputs all customers in original order by default
     cout << "All Customers " << endl;
 
     for (auto customer : customers) {
@@ -54,7 +104,8 @@ void sortCustomers(vector<Customer>& customers) {
     cout << "**************************************" << endl;
 }
 
-void deleteCustomer(vector<Customer>& customers) {
+//deletes customer entirely
+void Customer::deleteCustomer(vector<Customer>& customers) {
     int idToDelete;
     cout << "Enter the ID of the customer to delete: ";
     cin >> idToDelete;
@@ -70,8 +121,8 @@ void deleteCustomer(vector<Customer>& customers) {
     cout << "Customer with ID " << idToDelete << " was not found." << endl;
 }
 
-
-void createCustomer(vector<Customer>& Customers) {
+//creates a customer and pushes it to the vector
+void Customer::createCustomer(vector<Customer>& Customers) {
 
     int id;
     string fn, ln, add;
@@ -102,7 +153,8 @@ void createCustomer(vector<Customer>& Customers) {
     cout << "Customer created successfully." << endl;
 }
 
-void addCustomer(vector<Customer>& customers) {
+// recursive fuction to create additional customers until user exits with N
+void Customer::addCustomer(vector<Customer>& customers) {
     createCustomer(customers);
 
     char response;
@@ -117,7 +169,8 @@ void addCustomer(vector<Customer>& customers) {
     }
 }
 
-void printTotalSpend(vector<Purchase>& purchases) {
+//calculates and outputs a customer's total spend amount
+void Customer::printTotalSpend(vector<Purchase>& purchases) {
     int customerId;
     double totalSpend = 0.0;
 
@@ -133,9 +186,8 @@ void printTotalSpend(vector<Purchase>& purchases) {
     cout << "Total spend for customer ID " << customerId << ": $" << totalSpend << endl;
 }
 
-
-
-void updateCustomer(vector<Customer>& customers) {
+//updates a customer based on what user is requesting
+void Customer::updateCustomer(vector<Customer>& customers) {
     int idToUpdate;
     cout << "Enter the ID of the customer to update: ";
     cin >> idToUpdate;
@@ -191,7 +243,7 @@ void updateCustomer(vector<Customer>& customers) {
                     cout << "Invalid update option." << endl;
                     break;
             }
-    
+// all items are declared as strings so getline can be used, ID is not able to be changed for obvious reasons
 
             cout << "Customer information updated successfully." << endl;
             break;
@@ -203,7 +255,8 @@ void updateCustomer(vector<Customer>& customers) {
     }
 }
 
-void printCustomer(vector<Purchase>& purchases,vector <Customer>& customers) {
+//outputs the customer information and their associate purchases in
+void Customer::printCustomer(vector<Purchase>& purchases,vector <Customer>& customers) {
     int idToPrint;
     cout << "Enter the ID of the customer to print: ";
     cin >> idToPrint;

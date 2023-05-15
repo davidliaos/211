@@ -4,9 +4,18 @@
 #include <vector>
 #include "purchase.h"
 using namespace std;
+//constructor
+    Purchase::Purchase(int id, const std::string item, const std::string date, double price){
+        this->id = id;
+        this->item = item;
+        this->date = date;
+        this->price = price;
+    }
+//default constructor
+    Purchase::Purchase() : id(0), item(""), date(""), price(0.0) {}
 
-void createPurchase(vector<Purchase>& purchases) {
-
+// normal non recursive function to add purchase to a customer
+void Purchase::createPurchase(vector<Purchase>& purchases) {
     int id;
     string item, date;
     double price;
@@ -26,7 +35,8 @@ void createPurchase(vector<Purchase>& purchases) {
     cout << "Purchase created successfully." << endl;
 }
 
-void addPurchases(vector<Purchase>& purchases) {
+//same recursive function to add additional customers upon request
+void Purchase::addPurchases(vector<Purchase>& purchases) {
     createPurchase(purchases);
 
     char response;

@@ -13,10 +13,18 @@ public:
     Purchase(int id, std::string item, std::string date, double price);
     Purchase();
 
-    int getID() const;
-    const std::string& getDate() const;
-    double getPrice() const;
-    const std::string& getItem() const;
+    const int& getID()const{
+        return id;
+    }
+    const std::string& getDate() const{
+        return date;
+    }
+    double getPrice() const{
+        return price;
+    }
+    const std::string& getItem() const{
+        return item;
+    }
     
     void createPurchase(std::vector<Purchase>& purchases);
     void addPurchases(std::vector<Purchase>& purchases);

@@ -1,3 +1,5 @@
+
+
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
@@ -15,38 +17,64 @@ public:
 
     Customer();
 
-    string getFirstName();
+        string getFirstName() {
+            return firstName;
+        }
 
-    string getLastName();
+        string getLastName() {
+            return lastName;
+        }
 
-    string getAddress();
+        string getAddress() {
+            return address;
+        }
 
-    string getCity();
+        string getCity() {
+            return city;
+        }
 
-    string getState();
+        string getState() {
+            return state;
+        }
 
-    string getZipcode();
+        string getZipcode() {
+            return zipcode;
+        }
 
-    string getPhoneNumber();
+        string getPhoneNumber() {
+            return phoneNumber;
+        }
 
-    int getID();
+        int getID() {
+            return id;
+        }
 
-    void setID(int newID);
+    void setID(int newID) {
+        this->id = newID;
+    }
 
-    void setFirstName(string newFirstName);
+    void setFirstName(string newFirstName){
+        this->firstName = newFirstName;
+    }
 
-    void setLastName(string newLastName);
-
-    void setAddress(string newAddress);
-
-    void setCity(string newCity);
-
-    void setState(string newState);
-
-    void setZipcode(string newZipcode);
-
-    void setPhoneNumber(string newPhoneNumber);
-
+    void setLastName(string newLastName){
+        this->lastName = newLastName;
+    }
+    void setAddress(string newAddress){
+        this->address = newAddress;
+    }
+    void setCity(string newCity){
+        this->city = newCity;
+}
+    void setState(string newState){
+        this->state = newState;
+}
+    void setZipcode(string newZipcode){
+        this->zipcode = newZipcode;
+    }
+    void setPhoneNumber(string newPhoneNumber){
+        this->phoneNumber = newPhoneNumber;
+    }
     void showCustomers(vector<Customer>& customers);
 
     void sortCustomers(vector<Customer>& customers);
@@ -59,11 +87,12 @@ public:
 
     void updateCustomer(vector<Customer>& customers);
 
-    void printCustomer(vector<Customer>& customers,vector<Purchase>& purchases);
+    void printCustomer(vector<Purchase>& purchases,vector<Customer>& customers);
     
     void printTotalSpend(vector<Purchase>& purchases);
 
-private:
+    void sortCustomer(int x);
+
     int id;
     string firstName;
     string lastName;

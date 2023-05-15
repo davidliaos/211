@@ -1,10 +1,12 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
+#include<iostream>
+#include<fstream>
 #include "customer.h"
-#include "purchase.h"
 using namespace std;
+
+// need to create newPurchases, function isnt declared anywhere
+// update customer semi works, city and address overlaps 
+// sorting doesnt work, both print descending order 
+// if enter a letter it infinite loop
 
 Purchase purchase;
 Customer customer;
@@ -63,12 +65,12 @@ void exportToFile(const vector<Purchase>& purchases, const vector<Customer>& cus
             return;
         }
 
-        for (auto purchase : purchases) {
-            fout << purchase.getID() << " "
-                    << purchase.getItem() << " "
-                    << purchase.getDate() << " "
-                    << purchase.getPrice() << endl;
-        }
+            for (auto purchase : purchases) {
+                fout << purchase.getID() << " "
+                        << purchase.getItem() << " "
+                        << purchase.getDate() << " "
+                        << purchase.getPrice() << endl;
+            }
         fout.close();
         cout << "Data has been saved to Purchase.txt." << endl;
 
@@ -96,86 +98,76 @@ void exportToFile(const vector<Purchase>& purchases, const vector<Customer>& cus
     
 
 void menu(vector<Customer>& customers, vector<Purchase>& purchases) {
-    int choice;
+    int choice = -1;
 
-    do {
-    cout << "╔════════════════════════════════════════════════════════╗" << endl;
-    cout << "║              Welcome to David's Grocery Store            ║" << endl;
-    cout << "╟──────────────────────────────────────────────────────────╢" << endl;
-    cout << "║ Please choose an option:                                 ║" << endl;
-    cout << "║    1. Print out list of all customers                     ║" << endl;
-    cout << "║    2. Sort and print customer list                        ║" << endl;
-    cout << "║    3. Print out a specific customer's account information ║" << endl;
-    cout << "║       with all purchases                                  ║" << endl;
-    cout << "║    4. Print out total spend for a customer's purchases    ║" << endl;
-    cout << "║    5. Add a new customer                                  ║" << endl;
-    cout << "║    6. Add multiple new customers                          ║" << endl;
-    cout << "║    7. Update a customer's information                     ║" << endl;
-    cout << "║    8. Delete a customer's information                     ║" << endl;
-    cout << "║    9. Add a new customer's purchase                       ║" << endl;
-    cout << "║    10. Add multiple new customer purchases                ║" << endl;
-    cout << "║    11. Save changes to file                               ║" << endl;
-    cout << "║    12. Exit                                               ║" << endl;
-    cout << "╚════════════════════════════════════════════════════════╝" << endl;
-    cin >> choice;
+    while (choice != 12) {
+        cout << "╔════════════════════════════════════════════════════════╗" << endl;
+        cout << "║              Welcome to David's Grocery Store            ║" << endl;
+        cout << "╟──────────────────────────────────────────────────────────╢" << endl;
+        cout << "║ Please choose an option:                                 ║" << endl;
+        cout << "║    1. Print out list of all customers                     ║" << endl;
+        cout << "║    2. Sort and print customer list                        ║" << endl;
+        cout << "║    3. Print out a specific customer's account information ║" << endl;
+        cout << "║       with all purchases                                  ║" << endl;
+        cout << "║    4. Print out total spend for a customer's purchases    ║" << endl;
+        cout << "║    5. Add a new customer                                  ║" << endl;
+        cout << "║    6. Add multiple new customers                          ║" << endl;
+        cout << "║    7. Update a customer's information                     ║" << endl;
+        cout << "║    8. Delete a customer's information                     ║" << endl;
+        cout << "║    9. Add a new customer's purchase                       ║" << endl;
+        cout << "║    10. Add multiple new customer purchases                ║" << endl;
+        cout << "║    11. Save changes to file                               ║" << endl;
+        cout << "║    12. Exit                                               ║" << endl;
+        cout << "╚════════════════════════════════════════════════════════╝" << endl;
 
-    switch (choice) {
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
             case 1:
                 customer.showCustomers(customers);
-                menu(customers,purchases);
                 break;
             case 2:
                 customer.sortCustomers(customers);
-                menu(customers,purchases);
                 break;
             case 3:
-                customer.printCustomer(customers, purchases);
-                menu(customers,purchases);
+                customer.printCustomer(purchases, customers);
                 break;
-            
             case 4:
                 customer.printTotalSpend(purchases);
-                menu(customers,purchases);
                 break;
             case 5:
-                // Add a new customer
                 customer.createCustomer(customers);
-                menu(customers,purchases);
                 break;
             case 6:
-                // Add multiple new customers
                 customer.addCustomer(customers);
-                menu(customers,purchases);
                 break;
             case 7:
-                // Update a customer's information
                 customer.updateCustomer(customers);
-                menu(customers,purchases);
                 break;
             case 8:
-                // Delete a customer's information
                 customer.deleteCustomer(customers);
-                menu(customers,purchases);
                 break;
             case 9:
                 purchase.createPurchase(purchases);
-                menu(customers,purchases);
                 break;
             case 10:
                 purchase.addPurchases(purchases);
-                menu(customers,purchases);
                 break;
             case 11:
-                exportToFile(purchases,customers);
-                menu(customers,purchases);
+                exportToFile(purchases, customers);
                 break;
             case 12:
-            // Exit the program
-                    return;
+                // Exit the program
+                return;
+            default:
+                cout << "Invalid option. Please choose a valid option." << endl;
                 break;
+        }
     }
-    } while (choice != 12);
 }
+
+
 
 int main(){
     vector<Customer> customers;
