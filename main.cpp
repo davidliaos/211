@@ -14,7 +14,7 @@ void readFromFile(vector<Customer>& customers, vector<Purchase>& purchases) {
     string filename;
 
     // Read in Customer data
-    filename = "Customers.txt";
+    filename = "customers.txt";
     fin.open(filename);
     if (!fin) {
         cout << "Error: could not open file " << filename << endl;
@@ -30,7 +30,7 @@ void readFromFile(vector<Customer>& customers, vector<Purchase>& purchases) {
     fin.close();
 
     // Read in Purchase data
-    filename = "Purchases.txt";
+    filename = "purchases.txt";
     fin.open(filename);
     if (!fin) {
         cout << "Error: could not open file " << filename << endl;
@@ -184,4 +184,3 @@ int main(){
     menu(customers,purchases);
 
 }
-
