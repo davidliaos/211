@@ -14,7 +14,7 @@ void readFromFile(vector<Customer>& customers, vector<Purchase>& purchases) {
     string filename;
 
     // Read in Customer data
-    filename = "customers.txt";
+    filename = "Customers.txt";
     fin.open(filename);
     if (!fin) {
         cout << "Error: could not open file " << filename << endl;
@@ -30,7 +30,7 @@ void readFromFile(vector<Customer>& customers, vector<Purchase>& purchases) {
     fin.close();
 
     // Read in Purchase data
-    filename = "purchases.txt";
+    filename = "Purchases.txt";
     fin.open(filename);
     if (!fin) {
         cout << "Error: could not open file " << filename << endl;
@@ -57,7 +57,7 @@ void exportToFile(const vector<Purchase>& purchases, const vector<Customer>& cus
     ofstream fout;
 
     if (file_choice == 'P') {
-        fout.open("Purchase.txt");
+        fout.open("Purchases.txt");
         if (!fout) {
             cout << "Error: could not open file Purchase.txt" << endl;
             return;
@@ -73,7 +73,7 @@ void exportToFile(const vector<Purchase>& purchases, const vector<Customer>& cus
         cout << "Data has been saved to Purchase.txt." << endl;
 
     } else if (file_choice == 'C') {
-        fout.open("Customer.txt");
+        fout.open("Customers.txt");
         if (!fout) {
             cout << "Error: could not open file Customer.txt" << endl;
             return;
@@ -184,3 +184,4 @@ int main(){
     menu(customers,purchases);
 
 }
+
