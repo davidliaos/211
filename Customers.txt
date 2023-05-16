@@ -1,5 +1,4 @@
-0 John Smith 123-Main-St New-York NY 1210001 555-123-4567
-1 Jane Doe 456-Elm-St Los Angeles CA-90001 555-234-5678
-2 Bob Johnson 789-Oak-St Chicago IL 60601 555-345-6789
-3 Mary Jones 234-Maple-St Houston TX 77001 555-456-7890
-4 David Lee 567-Pine-St Phoenix AZ 85001 555-567-8901
+1 John Doe 123-Main-St Anytown California 12345 555-123-4567
+2 Jane Smith 456-Elm-St Cityville New-York 67890 555-987-6543
+3 Mike Johnson 789-Oak-Ave Townsville Texas 54321 555-456-7890
+4 David Lee 567-Pine-St Villageton Florida 98765 555-567-8901

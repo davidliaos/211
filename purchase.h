@@ -9,8 +9,8 @@ public:
     int id;
     std::string item;
     std::string date;
-    double price;
-    Purchase(int id, std::string item, std::string date, double price);
+    string price;
+    Purchase(int id, std::string item, std::string date, string price);
     Purchase();
 
     const int& getID()const{
@@ -19,7 +19,7 @@ public:
     const std::string& getDate() const{
         return date;
     }
-    double getPrice() const{
+    string getPrice() const{
         return price;
     }
     const std::string& getItem() const{

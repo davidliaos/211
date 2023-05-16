@@ -5,7 +5,7 @@
 #include "purchase.h"
 using namespace std;
 //constructor
-    Purchase::Purchase(int id, const std::string item, const std::string date, double price){
+    Purchase::Purchase(int id, const std::string item, const std::string date, string price){
         this->id = id;
         this->item = item;
         this->date = date;
@@ -16,10 +16,10 @@ using namespace std;
 
 // normal non recursive function to add purchase to a customer
 void Purchase::createPurchase(vector<Purchase>& purchases) {
+
     int id;
     string item, date;
-    double price;
-
+    string price;
     cout << "Enter Customer ID: ";
     cin >> id;
     cout << "Enter item: ";
